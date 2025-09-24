@@ -30,6 +30,8 @@ import {
   Pie,
   Cell,
 } from "recharts";
+import globalAiLogo from "./assets/global-ai-logo.svg";
+import sodexoLogo from "./assets/sodexo-logo.svg";
 
 const months = Array.from({ length: 12 }).map((_, i) => new Date(2024, i, 1).toLocaleString("en", { month: "short" }));
 const adoptionSeries = months.map((month, i) => ({
@@ -263,7 +265,26 @@ function Shell({ children }: { children: React.ReactNode }) {
           </button>
           <Gauge size={22} />
           <div className="font-semibold">Business Control Center</div>
-          <div className="ml-auto text-sm text-[#555]">{title}</div>
+          <div className="ml-auto flex flex-wrap items-center gap-3 sm:gap-5 justify-end text-[#555]">
+            <div className="text-xs sm:text-sm font-medium whitespace-nowrap">{title}</div>
+            <div className="flex items-center gap-2">
+              <span className="text-[10px] sm:text-xs uppercase tracking-wide text-[#777]">Platform</span>
+              <img
+                src={globalAiLogo}
+                alt="Global AI logo"
+                className="h-6 w-auto object-contain"
+              />
+            </div>
+            <span className="hidden sm:block h-6 w-px bg-[#ddd]" aria-hidden="true" />
+            <div className="flex items-center gap-2">
+              <span className="text-[10px] sm:text-xs uppercase tracking-wide text-[#777]">Client</span>
+              <img
+                src={sodexoLogo}
+                alt="Sodexo logo"
+                className="h-6 w-auto object-contain"
+              />
+            </div>
+          </div>
         </div>
       </header>
 
