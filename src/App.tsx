@@ -100,6 +100,139 @@ const fmt = new Intl.NumberFormat("en-US");
 const money = (n: number) =>
   new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 }).format(n);
 
+const adoptionHighlights = [
+  {
+    label: "Automation Coverage",
+    value: "46%",
+    description: "% of eligible workflows automated vs. manual baseline",
+  },
+  {
+    label: "Agent Utilization",
+    value: "37%",
+    description: "% of employees working with AI agents each month",
+  },
+  {
+    label: "Collaboration Index",
+    value: "2.4 : 1",
+    description: "Human-to-agent interaction ratio across automated workflows",
+  },
+  {
+    label: "Training Completion",
+    value: "72%",
+    description: "Portion of workforce completing AI enablement programs",
+  },
+];
+const efficiencyHighlights = [
+  {
+    label: "Hours Saved (YTD)",
+    value: fmt.format(30100),
+    description: "Cumulative labor hours reinvested through automation",
+  },
+  {
+    label: "Cost Savings",
+    value: money(940000),
+    description: "Operational spend avoided in the last quarter",
+  },
+  {
+    label: "Vendor Replacement",
+    value: money(49000),
+    description: "Monthly spend displaced by retiring legacy tools",
+  },
+  {
+    label: "Energy Savings",
+    value: "18%",
+    description: "Reduction in compute & storage consumption from optimized models",
+  },
+];
+const revenueHighlights = [
+  {
+    label: "AI-Enabled ARR",
+    value: "$2.1M",
+    description: "Run-rate revenue from AI-driven offerings",
+  },
+  {
+    label: "Sales Uplift",
+    value: "+6.8%",
+    description: "Increase in conversion from predictive targeting",
+  },
+  {
+    label: "Innovation Pipeline",
+    value: "7 initiatives",
+    description: "Emerging use cases progressing toward commercialization",
+  },
+  {
+    label: "Market Expansion",
+    value: "3 regions",
+    description: "New markets entered with AI-supported services",
+  },
+];
+const roiHighlights = [
+  {
+    label: "ROAI",
+    value: "2.9x",
+    description: "Blended return on AI investment across the portfolio",
+  },
+  {
+    label: "Payback Period",
+    value: "7.5 mo",
+    description: "Time to break even on enterprise AI spend",
+  },
+  {
+    label: "Scenario Upside",
+    value: "+38%",
+    description: "Modeled value lift when backlog automations go live",
+  },
+  {
+    label: "Board-Ready Cases",
+    value: "11",
+    description: "Use cases with audited ROI packages for governance",
+  },
+];
+const riskHighlights = [
+  {
+    label: "Workflow Accuracy",
+    value: "96.5%",
+    description: "Outputs meeting quality thresholds in December",
+  },
+  {
+    label: "Compliance Coverage",
+    value: "96%",
+    description: "Policies and controls aligned with AI governance standards",
+  },
+  {
+    label: "Incidents (30d)",
+    value: "3",
+    description: "AI-related events escalated for human review",
+  },
+  {
+    label: "Explainability",
+    value: "82%",
+    description: "Automations equipped with transparency tooling",
+  },
+];
+const engagementHighlights = [
+  {
+    label: "Executive Sessions",
+    value: "295",
+    description: "Leadership interactions with the control center YTD",
+  },
+  {
+    label: "Adoption Champions",
+    value: "58",
+    description: "Recognized teams coaching peers on AI workflows",
+  },
+  {
+    label: "Feedback Loop",
+    value: "214 inputs",
+    description: "Ideas and issues submitted via change management hub",
+  },
+  {
+    label: "Employee NPS",
+    value: "+48",
+    description: "Net promoter score for AI-enabled ways of working",
+  },
+];
+
 function usePageTitle() {
   const { pathname } = useLocation();
   const map: Record<string, string> = {
@@ -230,6 +363,27 @@ function HomePage() {
               </PieChart>
             </ResponsiveContainer>
           </div>
+        </Card>
+      </div>
+
+      <div className="grid lg:grid-cols-2 xl:grid-cols-3 gap-4">
+        <Card title="Adoption & Agentic AI Signals">
+          <Highlights items={adoptionHighlights} />
+        </Card>
+        <Card title="Efficiency & Cost Focus">
+          <Highlights items={efficiencyHighlights} />
+        </Card>
+        <Card title="Revenue Acceleration">
+          <Highlights items={revenueHighlights} />
+        </Card>
+        <Card title="Business Value & ROI Readout">
+          <Highlights items={roiHighlights} />
+        </Card>
+        <Card title="Quality, Risk & Compliance Watch">
+          <Highlights items={riskHighlights} />
+        </Card>
+        <Card title="Engagement & Change Management Pulse">
+          <Highlights items={engagementHighlights} />
         </Card>
       </div>
     </div>
@@ -694,6 +848,26 @@ function Heatmap({ labels, months }: { labels: string[]; months: string[] }) {
         </tbody>
       </table>
     </div>
+  );
+}
+
+function Highlights({
+  items,
+}: {
+  items: { label: string; value: string; description: string }[];
+}) {
+  return (
+    <ul className="space-y-3">
+      {items.map((item) => (
+        <li key={item.label} className="border border-[#e0e0f2] rounded-xl bg-white px-3 py-2">
+          <div className="flex items-baseline justify-between text-sm">
+            <span className="font-semibold text-[#2d2d4d]">{item.label}</span>
+            <span className="text-[#5b5bd6] font-semibold">{item.value}</span>
+          </div>
+          <div className="text-xs text-[#555] mt-1 leading-snug">{item.description}</div>
+        </li>
+      ))}
+    </ul>
   );
 }
 
