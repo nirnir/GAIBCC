@@ -92,6 +92,11 @@ const vendorReplacement = [
   { tool: "RPA Licenses (10)", monthly: 18000, replacedBy: "Agentic Orchestration", status: "Phasing" },
   { tool: "Outbound Dialer", monthly: 9000, replacedBy: "AI Outreach", status: "Planned" },
 ];
+const slaImprovements = [
+  { process: "Ticket Resolution", manual: "3h 00m", agent: "0h 10m", improvement: "↓ 94%" },
+  { process: "Invoice Approval", manual: "1h 45m", agent: "0h 12m", improvement: "↓ 89%" },
+  { process: "Incident Dispatch", manual: "2h 20m", agent: "0h 14m", improvement: "↓ 90%" },
+];
 const incidents = [
   { id: "INC-1042", sev: "Med", area: "Support", desc: "Wrong article cited", sla: "Resolved <4h" },
   { id: "INC-1049", sev: "Low", area: "Sales", desc: "Duplicate suggestion", sla: "Resolved <24h" },
@@ -518,6 +523,19 @@ function EfficiencyPage() {
             ["ENR", fmt.format(3900), money(120000), "31%"],
           ]}
         />
+      </Card>
+
+      <Card title="SLA Improvement Metrics">
+        <div className="space-y-3">
+          <Table
+            headers={["Workflow", "Manual SLA", "Agent SLA", "Improvement"]}
+            rows={slaImprovements.map((s) => [s.process, s.manual, s.agent, s.improvement] as React.ReactNode[])}
+          />
+          <div className="text-xs text-[#555] leading-snug">
+            Tracking SLA compression highlights service reliability gains beyond pure ROI—for example, ticket
+            resolution accelerating from three hours manually to ten minutes with an agent.
+          </div>
+        </div>
       </Card>
     </div>
   );
